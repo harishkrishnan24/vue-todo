@@ -1,18 +1,24 @@
 <template>
   <div id="app">
     <div class="todo-wrapper">
-      <div class="todo-container"></div>
+      <div class="todo-container">
+        <todo-list />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import TodoList from "@/components/TodoList";
 export default {
-  name: "App"
+  name: "App",
+  components: {
+    TodoList
+  }
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -22,15 +28,18 @@ export default {
   margin-top: 60px;
 }
 
-.todo-wrapper {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
+.todo {
+  &-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
 
-.todo-container {
-  width: 400px;
-  min-height: 400px;
-  background-color: #ededed;
+  &-container {
+    width: 400px;
+    min-height: 400px;
+    background-color: #ededed;
+    border-radius: 5px;
+  }
 }
 </style>
