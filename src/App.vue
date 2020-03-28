@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <h1>Hello World</h1>
+    <div class="todo-wrapper">
+      <div class="todo-container"></div>
+    </div>
   </div>
 </template>
 
@@ -18,5 +20,17 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.todo-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.todo-container {
+  width: 400px;
+  min-height: 400px;
+  background-color: #ededed;
 }
 </style>
