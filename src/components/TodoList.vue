@@ -1,8 +1,11 @@
 <template>
   <div class="todo-list">
-    <todo-item :title="'Walk the Dog'" :description="'Go to the forest near zoo'" />
-    <todo-item :title="'Learn React Native'" :description="'Learn from Udemy'" />
-    <todo-item :title="todoTitle" :description="todoDescription" />
+    <todo-item
+      v-for="todo in todos"
+      :key="todo._id"
+      :title="todo.title"
+      :description="todo.description"
+    />
   </div>
 </template>
 
@@ -13,11 +16,11 @@ export default {
   components: {
     TodoItem
   },
-  data() {
-    return {
-      todoTitle: "Learn Vue.js",
-      todoDescription: "Learn from docs"
-    };
+  props: {
+    todos: {
+      required: true,
+      type: Array
+    }
   }
 };
 </script>
