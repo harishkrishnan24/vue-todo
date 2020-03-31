@@ -4,25 +4,26 @@
       <div class="todo-container">
         <todo-list :todos="todos" />
         <div class="todo-create-btn-container">
-          <div class="app-button">Create</div>
+          <div class="app-button" @click="isModalOpen = true">Create</div>
         </div>
       </div>
     </div>
-    <div class="modal">
-      <div class="modal-content">Modal window</div>
-    </div>
+    <Modal :isOpen="isModalOpen" @modalClosed="isModalOpen = false" />
   </div>
 </template>
 
 <script>
 import TodoList from "@/components/TodoList";
+import Modal from "@/components/Modal";
 export default {
   name: "App",
   components: {
-    TodoList
+    TodoList,
+    Modal
   },
   data() {
     return {
+      isModalOpen: false,
       todos: [
         {
           _id: "1",
@@ -41,7 +42,8 @@ export default {
         }
       ]
     };
-  }
+  },
+  methods: {}
 };
 </script>
 
@@ -67,27 +69,13 @@ export default {
     min-height: 400px;
     background-color: #ededed;
     border-radius: 5px;
+    display: flex;
+    flex-direction: column;
   }
-}
 
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 9999;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4);
-}
-
-.modal-content {
-  background-color: #fefefe;
-  margin: 15% auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
+  &-create-btn-container {
+    margin: 10px;
+  }
 }
 
 .app-button {
@@ -97,5 +85,9 @@ export default {
   background-color: #795899;
   color: white;
   font-weight: bold;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 </style>
