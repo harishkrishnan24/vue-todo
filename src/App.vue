@@ -4,11 +4,10 @@
       <div class="todo-container">
         <todo-list :todos="todos" />
         <div class="todo-create-btn-container">
-          <div class="app-button" @click="isModalOpen = true">Create</div>
+          <Modal />
         </div>
       </div>
     </div>
-    <Modal :isOpen="isModalOpen" @modalClosed="isModalOpen = false" />
   </div>
 </template>
 
@@ -47,14 +46,17 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.is-primary {
+  background-color: #47ca47 !important;
 }
 
 .todo {

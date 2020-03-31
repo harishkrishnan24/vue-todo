@@ -1,8 +1,21 @@
 <template>
-  <div class="modal" :class="{'is-active': isOpen}">
-    <div class="modal-content">
-      <span class="close" @click="emitCloseModal">&times;</span>
-      <p>Modal window</p>
+  <div>
+    <div class="app-button" @click="isOpen = true">Create</div>
+    <div class="modal" :class="{'is-active': isOpen}">
+      <div class="modal-content">
+        <span class="close" @click="isOpen = false">&times;</span>
+        <form class="app-form">
+          <div class="form-control">
+            <label class="label">Title</label>
+            <input class="form-input" type="text" v-model="form.title" />
+          </div>
+          <div class="form-control">
+            <label class="label">Description</label>
+            <input class="form-input" type="text" v-model="form.description" />
+          </div>
+          <button type="button" class="app-button is-primary" @click="createTodo">Create</button>
+        </form>
+      </div>
     </div>
   </div>
 </template>
@@ -10,15 +23,18 @@
 <script>
 export default {
   name: "Modal",
-  props: {
-    isOpen: {
-      required: true,
-      type: Boolean
-    }
+  data() {
+    return {
+      isOpen: false,
+      form: {
+        title: "",
+        description: ""
+      }
+    };
   },
   methods: {
-    emitCloseModal() {
-      this.$emit("modalClosed");
+    createTodo() {
+      console.log(this.form);
     }
   }
 };
@@ -57,6 +73,23 @@ export default {
   line-height: 8px;
   &:hover {
     cursor: pointer;
+  }
+}
+
+.app-form {
+  .label {
+    display: block;
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .form-input {
+    padding: 10px;
+    font-size: 17px;
+  }
+
+  .form-control {
+    margin-bottom: 10px;
   }
 }
 </style>
