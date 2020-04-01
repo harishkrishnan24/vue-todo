@@ -14,6 +14,7 @@
 <script>
 import TodoList from "@/components/TodoList";
 import TodoCreate from "@/components/TodoCreate";
+import store from "@/store";
 
 export default {
   name: "App",
@@ -24,29 +25,12 @@ export default {
   data() {
     return {
       isModalOpen: false,
-      todos: [
-        {
-          _id: "1",
-          title: "Walk the dog",
-          description: "Go to park near supermarket"
-        },
-        {
-          _id: "2",
-          title: "Learn VueJs",
-          description: "Learn from the official Documentation"
-        },
-        {
-          _id: "3",
-          title: "Learn Typescript",
-          description: "Learn from the udemy course"
-        }
-      ]
+      todos: store.state.todos
     };
   },
   methods: {
     createTodo(todo) {
-      console.log(todo);
-      this.todos.push(todo);
+      store.dispatch("createTodo", todo);
     }
   }
 };
