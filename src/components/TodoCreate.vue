@@ -5,9 +5,12 @@
         <label class="label">Title</label>
         <input class="form-input" type="text" v-model="form.title" />
       </div>
-      <div class="form-control">
+      <div class="form-control form-control-last">
         <label class="label">Description</label>
         <textarea class="form-input" v-model="form.description" cols="30" rows="5"></textarea>
+      </div>
+      <div class="app-error">
+        <div class="form-error">{{formError}}</div>
       </div>
       <button type="button" class="app-button is-primary" @click="submitForm">Create</button>
     </form>
@@ -27,7 +30,7 @@ export default {
         title: "",
         description: ""
       },
-      forceClose: false
+      formError: ""
     };
   },
   computed: {
@@ -46,15 +49,22 @@ export default {
         this.$emit("formSubmitted", { ...this.form });
         this.modal.close();
         this.resetForm();
+      } else {
+        this.formError =
+          "Form Error! Title needs to be longer than 8 characters and description longer than 10 characters";
       }
     },
     resetForm() {
       this.form.title = "";
       this.form.description = "";
+      this.formError = "";
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
+.form-error {
+  margin-bottom: 10px;
+}
 </style>

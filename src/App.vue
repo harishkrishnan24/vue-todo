@@ -65,6 +65,14 @@ export default {
   background-color: #47ca47 !important;
 }
 
+.is-warning {
+  background-color: #ffa753 !important;
+}
+
+.is-danger {
+  background-color: #ff5a5a !important;
+}
+
 .todo {
   &-wrapper {
     display: flex;
@@ -113,6 +121,14 @@ export default {
 
   .form-control {
     margin-bottom: 10px;
+
+    &-last {
+      margin-bottom: 0;
+    }
   }
+}
+
+.app-error {
+  color: #ff1212;
 }
 </style>
