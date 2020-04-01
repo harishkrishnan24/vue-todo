@@ -4,7 +4,7 @@
       <div class="todo-container">
         <todo-list :todos="todos" />
         <div class="todo-create-btn-container">
-          <Modal />
+          <todo-create @formSubmitted="createTodo" />
         </div>
       </div>
     </div>
@@ -13,12 +13,13 @@
 
 <script>
 import TodoList from "@/components/TodoList";
-import Modal from "@/components/Modal";
+import TodoCreate from "@/components/TodoCreate";
+
 export default {
   name: "App",
   components: {
     TodoList,
-    Modal
+    TodoCreate
   },
   data() {
     return {
@@ -42,7 +43,12 @@ export default {
       ]
     };
   },
-  methods: {}
+  methods: {
+    createTodo(todo) {
+      console.log(todo);
+      this.todos.push(todo);
+    }
+  }
 };
 </script>
 
@@ -90,6 +96,23 @@ export default {
 
   &:hover {
     cursor: pointer;
+  }
+}
+
+.app-form {
+  .label {
+    display: block;
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .form-input {
+    padding: 10px;
+    font-size: 17px;
+  }
+
+  .form-control {
+    margin-bottom: 10px;
   }
 }
 </style>
