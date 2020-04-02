@@ -25,8 +25,11 @@ export default {
   data() {
     return {
       isModalOpen: false,
-      todos: store.state.todos
+      todos: []
     };
+  },
+  created() {
+    this.todos = store.dispatch("initStore");
   },
   methods: {
     createTodo(todo) {
