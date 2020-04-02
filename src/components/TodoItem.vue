@@ -11,11 +11,11 @@
     <form class="app-form">
       <div class="form-control">
         <label class="label">Title</label>
-        <input class="form-input" type="text" :value="title" />
+        <input class="form-input" type="text" v-model="todo.title" />
       </div>
       <div class="form-control form-control-last">
         <label class="label">Description</label>
-        <textarea class="form-input" cols="30" rows="2" :value="description"></textarea>
+        <textarea class="form-input" cols="30" rows="2" v-model="todo.description"></textarea>
       </div>
       <button class="app-button is-warning" @click.prevent="editTodo">Update</button>
       <button class="app-button is-danger" @click.prevent="editMode = false">Cancel</button>
@@ -24,6 +24,8 @@
 </template>
 
 <script>
+import store from "@/store";
+
 export default {
   props: {
     title: {
@@ -34,18 +36,29 @@ export default {
       type: String,
       required: false,
       default: "Default description"
+    },
+    _id: {
+      type: String,
+      required: true
     }
   },
   data() {
     return {
-      editMode: false
+      editMode: false,
+      todo: {
+        _id: this._id,
+        title: this.title,
+        description: this.description
+      }
     };
   },
   methods: {
     editTodo() {
+      store.dispatch("updateTodo", { ...this.todo });
+      this.editMode = false;
     },
     deleteTodo() {
-      alert("Deleting Todo");
+      store.dispatch("deleteTodo", this.todo.id);
     }
   }
 };
